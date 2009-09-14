@@ -14,10 +14,18 @@ module Populator
       end
     end
     
+    def word
+      words 1
+    end
+    
     # Generate a given number of words. If a range is passed, it will generate
     # a random number of words within that range.
     def words(total)
       (1..interpret_value(total)).map { WORDS.rand }.join(' ')
+    end
+    
+    def sentence
+      sentences 1
     end
     
     # Generate a given number of sentences. If a range is passed, it will generate
@@ -26,6 +34,10 @@ module Populator
       (1..interpret_value(total)).map do
         words(5..20).capitalize
       end.join('. ')
+    end
+    
+    def paragraph
+      paragraphs 1
     end
     
     # Generate a given number of paragraphs. If a range is passed, it will generate
