@@ -3,13 +3,11 @@ module Populator
     module Sqlite
       # Executes multiple SQL statements in one query when joined with ";"
       def execute_batch(sql, name = nil)
-        catch_schema_changes do
-          log(sql, name) do
-            @connection.transaction { |db| db.execute_batch(sql) }
-          end
+        log(sql, name) do
+          @connection.transaction { |db| db.execute_batch(sql) }
         end
       end
-      
+
       def populate(table, columns, rows, name = nil)
         queries = []
         rows.each do |row|
